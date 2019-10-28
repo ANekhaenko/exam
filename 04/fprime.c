@@ -1,25 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   first_word.c                                       :+:      :+:    :+:   */
+/*   fprime.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anekhaen <anekhaen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/26 22:10:15 by anekhaen          #+#    #+#             */
-/*   Updated: 2019/06/26 22:38:35 by anekhaen         ###   ########.fr       */
+/*   Created: 2019/08/28 12:30:49 by anekhaen          #+#    #+#             */
+/*   Updated: 2019/08/28 12:36:39 by anekhaen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
 
-int main(int argc, char **argv)
+void	fprime(unsigned int nb)
 {
-	if (argc == 2)
+	unsigned int	prime;
+
+	if (nb == 1)
+		printf("1");
+	else
 	{
-		while (*argv[1] == ' ' || *argv[1] == '\t')
-			argv[1]++;
-		while (*argv[1] && *argv[1] != ' ' )
-			write(1, argv[1]++, 1);
+		prime = 2;
+		while (nb > 1)
+		{
+			if (nb % prime == 0)
+			{
+				printf("%d", prime);
+				nb /= prime;
+				if (nb > 1)
+					printf("*");
+				prime--;
+			}
+			prime++;
+		}
 	}
-	write(1, "\n", 1);
+}
+
+int		main(int ac, char **av)
+{
+	if (ac == 2 && *av[1])
+		fprime(atoi(av[1]));
+	printf("\n");
+	return (0);
 }

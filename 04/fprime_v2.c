@@ -1,25 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   first_word.c                                       :+:      :+:    :+:   */
+/*   fprime_v2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anekhaen <anekhaen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/26 22:10:15 by anekhaen          #+#    #+#             */
-/*   Updated: 2019/06/26 22:38:35 by anekhaen         ###   ########.fr       */
+/*   Created: 2019/08/28 17:24:33 by anekhaen          #+#    #+#             */
+/*   Updated: 2019/08/28 17:43:55 by anekhaen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<unistd.h>
+#include<stdio.h>
+#include<stdlib.h>
 
-int main(int argc, char **argv)
+void	fn_fact(unsigned int num)
 {
-	if (argc == 2)
+	unsigned int fact;
+
+	fact = 2;
+	if (num == 1)
+		printf("1");
+	else
 	{
-		while (*argv[1] == ' ' || *argv[1] == '\t')
-			argv[1]++;
-		while (*argv[1] && *argv[1] != ' ' )
-			write(1, argv[1]++, 1);
+		while (num > 1)
+		{
+			if (num % fact == 0)
+			{
+				printf("%d",fact);
+				num /= fact;
+				if (num > 1)
+					printf("*");
+				fact--;
+			}
+			fact++;
+		}
 	}
-	write(1, "\n", 1);
+
+}
+
+int		main(int argc, char **argv)
+{
+	if (argc == 2 && *argv[1])
+		fn_fact(atoi(argv[1]));
+	printf("\n");
+	return(0);
 }

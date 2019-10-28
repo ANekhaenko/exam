@@ -1,19 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   pgcd.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anekhaen <anekhaen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/26 22:32:44 by anekhaen          #+#    #+#             */
-/*   Updated: 2019/06/26 22:42:34 by anekhaen         ###   ########.fr       */
+/*   Created: 2019/07/16 17:37:32 by anekhaen          #+#    #+#             */
+/*   Updated: 2019/07/16 17:51:52 by anekhaen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include<stdio.h>
+#include<stdlib.h>
 
-void	ft_putstr(char *str)
+int pgcd(unsigned int n, unsigned int n2)
 {
-	while (*str)
-		write(1, str++, 1);
+    int i;
+
+    i = n;
+    while(i > 0)
+    {
+        if ((n % i == 0) && (n2 % i == 0))
+            return(i);
+        i--;
+    }
+    return(1);
+}
+
+int main(int argc, char **argv)
+{
+    if (argc == 3)
+    {
+        printf("%d", pgcd(atoi(argv[1]), atoi(argv[2])));
+    }
+    printf("\n");
+    return(0);
 }

@@ -6,7 +6,7 @@
 /*   By: anekhaen <anekhaen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 21:38:47 by anekhaen          #+#    #+#             */
-/*   Updated: 2019/07/08 22:15:18 by anekhaen         ###   ########.fr       */
+/*   Updated: 2019/09/10 13:46:51 by anekhaen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,43 @@ int	*ft_range(int start, int end)
 	return (range);
 }
 
+int     *ft_range2(int start, int end)
+{
+    int     *array;
+    int     size;
+
+    if (start > end)
+        size = (start - end);
+    else
+        size = (end - start);
+    array = (int *)malloc(sizeof(int) * (size + 1));
+    if (end > start)
+    {
+        while ( end >= start)
+        {
+            array[size] = end;
+            end--;
+            size--;
+        }
+    }
+    else
+    {
+        while ( start >= end)
+        {
+            array[size] = end;
+           // if (end == 2147483647)
+              //  break;
+            end++;
+            size--;
+        }
+    }
+return(array);
+}
+
 int	main(int ac, char **av)
 {
-	int *p = ft_range(2, -1);
+	int *p = ft_range(2147483647, 2147483640);
+	int *p2 = ft_range2(2147483647, 2147483640);
 	printf("|%d|", p[0]);
 	printf("%d|", p[1]);
 	printf("%d|", p[2]);

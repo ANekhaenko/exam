@@ -40,3 +40,31 @@ int main(int argc, char **argv)
     }
     write(1, "\n", 1);
 }
+
+
+#include <unistd.h>
+
+int main(int argc, char **argv)
+{
+    int simbol[127] = {0};
+
+    if (argc == 3)
+    {
+        while(*argv[2])
+        {
+            if (simbol[*argv[2]] == 0)
+                simbol[*argv[2]] = 1;
+            argv[2]++;
+        }
+        while (*argv[1])
+        {
+            if (simbol[*argv[1]] == 1)
+            {
+                simbol[*argv[1]] = 2;
+                write(1, argv[1], 1);
+            }
+        argv[1]++;
+        }
+    }
+    write(1, "\n", 1);
+}
